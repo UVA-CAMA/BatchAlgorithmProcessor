@@ -1,0 +1,167 @@
+<deployment-project plugin="plugin.ezdeploy" plugin-version="1.0">
+  <configuration build-checksum="2123580162" file="X:\Amanda\BatchAlgorithmGUI\BatchAlgorithmProcessor_v1_0.prj" location="X:\Amanda\BatchAlgorithmGUI" name="BatchAlgorithmProcessor_v1_0" preferred-package-location="X:\Amanda\BatchAlgorithmGUI\BatchAlgorithmProcessor_v1_0\for_redistribution" preferred-package-type="package.type.exe" target="target.ezdeploy.standalone" target-name="Application Compiler">
+    <param.appname>BatchAlgorithmProcessor</param.appname>
+    <param.icon>${PROJECT_ROOT}\BatchAlgorithmProcessor_v1_0_resources\icon.ico</param.icon>
+    <param.icons>
+      <file>${PROJECT_ROOT}\BatchAlgorithmProcessor_v1_0_resources\icon_48.png</file>
+      <file>${PROJECT_ROOT}\BatchAlgorithmProcessor_v1_0_resources\icon_32.png</file>
+      <file>${PROJECT_ROOT}\BatchAlgorithmProcessor_v1_0_resources\icon_24.png</file>
+      <file>${PROJECT_ROOT}\BatchAlgorithmProcessor_v1_0_resources\icon_16.png</file>
+    </param.icons>
+    <param.version>1.0</param.version>
+    <param.authnamewatermark>Amanda Zimmet</param.authnamewatermark>
+    <param.email>ame3pd@hscmail.mcc.virginia.edu</param.email>
+    <param.company>University of Virginia</param.company>
+    <param.summary />
+    <param.description>Instructions for Running the Batch Algorithm Processor
+
+Begin in the STEP 1 box. 
+Select either “Choose Files” or “Choose Directory.” If you select “Choose Files,” you can select a group of individual files (as long as they are all in the same directory). If you choose “Choose Directory,” you can select a folder containing hdf5 files. It will find all of the hdf5 files present with a directory. The selected files will be displayed in the listbox. There is no need to manually select any of the files within that list. All files within the list will be used.
+
+Next, continue on to the STEP 2 box.
+Here, you can select (by highlighting using your mouse and the shift/ctrl keys) which algorithms you would like to run. 
+
+Finally, continue on to the STEP 3 box. 
+Hit the “Run” button. The line below the run button will tell you what file number you are on and a popup window will display the algorithm currently being processed. A error message will be displayed briefly if the BatchAlgorithmProcessor runs into any problems. You do not need to click "OK" on any of the pop-up windows. Simply wait until it says "Tagging Algorithms Complete" for the last file.</param.description>
+    <param.screenshot>${PROJECT_ROOT}\BAP_Logo.png</param.screenshot>
+    <param.guid />
+    <param.installpath.string>\University of Virginia\BatchAlgorithmProcessor\</param.installpath.string>
+    <param.installpath.combo>option.installpath.programfiles</param.installpath.combo>
+    <param.logo>${PROJECT_ROOT}\BAP_Logo.png</param.logo>
+    <param.install.notes />
+    <param.target.install.notes />
+    <param.intermediate>${PROJECT_ROOT}\BatchAlgorithmProcessor_v1_0\for_testing</param.intermediate>
+    <param.files.only>${PROJECT_ROOT}\BatchAlgorithmProcessor_v1_0\for_redistribution_files_only</param.files.only>
+    <param.output>${PROJECT_ROOT}\BatchAlgorithmProcessor_v1_0\for_redistribution</param.output>
+    <param.logdir>${PROJECT_ROOT}\BatchAlgorithmProcessor_v1_0</param.logdir>
+    <param.enable.clean.build>false</param.enable.clean.build>
+    <param.user.defined.mcr.options />
+    <param.target.type>subtarget.standalone</param.target.type>
+    <param.support.packages />
+    <param.web.mcr>true</param.web.mcr>
+    <param.package.mcr>false</param.package.mcr>
+    <param.no.mcr>false</param.no.mcr>
+    <param.web.mcr.name>MyAppInstaller_web</param.web.mcr.name>
+    <param.package.mcr.name>MyAppInstaller_mcr</param.package.mcr.name>
+    <param.no.mcr.name>MyAppInstaller_app</param.no.mcr.name>
+    <param.windows.command.prompt>true</param.windows.command.prompt>
+    <param.create.log>false</param.create.log>
+    <param.log.file />
+    <param.native.matlab>false</param.native.matlab>
+    <param.checkbox>false</param.checkbox>
+    <param.example />
+    <param.help.text />
+    <unset>
+      <param.version />
+      <param.summary />
+      <param.guid />
+      <param.installpath.string />
+      <param.installpath.combo />
+      <param.target.install.notes />
+      <param.intermediate />
+      <param.files.only />
+      <param.output />
+      <param.logdir />
+      <param.enable.clean.build />
+      <param.user.defined.mcr.options />
+      <param.target.type />
+      <param.support.packages />
+      <param.web.mcr />
+      <param.package.mcr />
+      <param.no.mcr />
+      <param.web.mcr.name />
+      <param.package.mcr.name />
+      <param.no.mcr.name />
+      <param.windows.command.prompt />
+      <param.create.log />
+      <param.log.file />
+      <param.native.matlab />
+      <param.checkbox />
+      <param.example />
+      <param.help.text />
+    </unset>
+    <fileset.main>
+      <file>${PROJECT_ROOT}\BatchAlgorithmProcessor.m</file>
+    </fileset.main>
+    <fileset.resources>
+      <file>X:\Amanda\NICUHDF5Viewer\Apnea\tombqrs.m</file>
+      <file>X:\Amanda\NICUHDF5Viewer\PB\cwt5.m</file>
+      <file>X:\Amanda\NICUHDF5Viewer\PB\mypb6a.m</file>
+      <file>X:\Amanda\NICUHDF5Viewer\PB\mypb6b.m</file>
+      <file>X:\Amanda\NICUHDF5Viewer\PB\wavelets.asc</file>
+      <file>X:\Amanda\NICUHDF5Viewer\PB\wavelets.inf</file>
+      <file>X:\Amanda\NICUHDF5Viewer\PB\wavelets.prv</file>
+    </fileset.resources>
+    <fileset.package />
+    <fileset.depfun>
+      <file>X:\Amanda\NICUHDF5Viewer\addtoresultsfile2.m</file>
+      <file>X:\Amanda\NICUHDF5Viewer\Apnea\findwindows.m</file>
+      <file>X:\Amanda\NICUHDF5Viewer\Apnea\naninterp.m</file>
+      <file>X:\Amanda\NICUHDF5Viewer\Apnea\nicudrop.m</file>
+      <file>X:\Amanda\NICUHDF5Viewer\Apnea\tombstone.m</file>
+      <file>X:\Amanda\NICUHDF5Viewer\Apnea\wmtagevents.m</file>
+      <file>X:\Amanda\NICUHDF5Viewer\apneadetector.m</file>
+      <file>X:\Amanda\NICUHDF5Viewer\blocktime.m</file>
+      <file>X:\Amanda\NICUHDF5Viewer\bradydetector.m</file>
+      <file>X:\Amanda\NICUHDF5Viewer\cu_artifact_removal.m</file>
+      <file>X:\Amanda\NICUHDF5Viewer\datanames.m</file>
+      <file>X:\Amanda\NICUHDF5Viewer\datenum_round_off.m</file>
+      <file>X:\Amanda\NICUHDF5Viewer\desatdetector.m</file>
+      <file>X:\Amanda\NICUHDF5Viewer\gethdf5data.m</file>
+      <file>X:\Amanda\NICUHDF5Viewer\gethdf5vital.m</file>
+      <file>X:\Amanda\NICUHDF5Viewer\gethdf5wave.m</file>
+      <file>X:\Amanda\NICUHDF5Viewer\getwavedata.m</file>
+      <file>X:\Amanda\NICUHDF5Viewer\getWUSTLvital2.m</file>
+      <file>X:\Amanda\NICUHDF5Viewer\PB\Calc_pb_wavelet.m</file>
+      <file>X:\Amanda\NICUHDF5Viewer\periodicbreathing.m</file>
+      <file>X:\Amanda\NICUHDF5Viewer\QRSDetection\qrs_detect2.m</file>
+      <file>X:\Amanda\NICUHDF5Viewer\run_all_tagging_algs.m</file>
+      <file>X:\Amanda\NICUHDF5Viewer\tagjoin.m</file>
+      <file>X:\Amanda\NICUHDF5Viewer\threshcross.m</file>
+      <file>X:\Amanda\NICUHDF5Viewer\threshtags.m</file>
+      <file>X:\Amanda\NICUHDF5Viewer\units.m</file>
+      <file>X:\Amanda\NICUHDF5Viewer\utc2local.m</file>
+      <file>X:\Amanda\NICUHDF5Viewer\vdataformat.m</file>
+      <file>X:\Amanda\NICUHDF5Viewer\Wavelets_Info.mat</file>
+      <file>X:\Amanda\NICUHDF5Viewer\wustl_artifact_removal.m</file>
+    </fileset.depfun>
+    <build-deliverables>
+      <file location="${PROJECT_ROOT}\BatchAlgorithmProcessor_v1_0\for_testing" name="BatchAlgorithmProcessor.exe" optional="false">X:\Amanda\BatchAlgorithmGUI\BatchAlgorithmProcessor_v1_0\for_testing\BatchAlgorithmProcessor.exe</file>
+      <file location="${PROJECT_ROOT}\BatchAlgorithmProcessor_v1_0\for_testing" name="readme.txt" optional="true">X:\Amanda\BatchAlgorithmGUI\BatchAlgorithmProcessor_v1_0\for_testing\readme.txt</file>
+      <file location="${PROJECT_ROOT}\BatchAlgorithmProcessor_v1_0\for_testing" name="splash.png" optional="false">X:\Amanda\BatchAlgorithmGUI\BatchAlgorithmProcessor_v1_0\for_testing\splash.png</file>
+    </build-deliverables>
+    <workflow />
+    <matlab>
+      <root>C:\Program Files\MATLAB\R2017b</root>
+      <toolboxes>
+        <toolbox name="fixedpoint" />
+        <toolbox name="matlabcoder" />
+      </toolboxes>
+      <toolbox>
+        <fixedpoint>
+          <enabled>true</enabled>
+        </fixedpoint>
+      </toolbox>
+      <toolbox>
+        <matlabcoder>
+          <enabled>true</enabled>
+        </matlabcoder>
+      </toolbox>
+    </matlab>
+    <platform>
+      <unix>false</unix>
+      <mac>false</mac>
+      <windows>true</windows>
+      <win2k>false</win2k>
+      <winxp>false</winxp>
+      <vista>false</vista>
+      <linux>false</linux>
+      <solaris>false</solaris>
+      <osver>10.0</osver>
+      <os32>false</os32>
+      <os64>true</os64>
+      <arch>win64</arch>
+      <matlab>true</matlab>
+    </platform>
+  </configuration>
+</deployment-project>
