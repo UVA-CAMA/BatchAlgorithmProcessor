@@ -180,12 +180,6 @@ function handles = loaddata(hObject, eventdata, handles)
         waitfor(handles.PercentageCompleteTextBox,'string','Please wait. Loading Vital Signs...');
         [handles.vdata,handles.vname,handles.vt,~]=gethdf5vital(fullfile(handles.pathname, handles.filename));
         
-%         % Handle the seconds since event timestamps (that are not in UTC)
-%         handles.isutc = strcmp(h5readatt(fullfile(handles.pathname, handles.filename),'/','Timezone'),'UTC');
-%         if ~handles.isutc
-%             handles.vt = datenum(duration(0,0,0,handles.vt));
-%         end
-        
         try
             handles.timezone = h5readatt(fullfile(handles.pathname, handles.filename),'/','Collection Timezone');
             handles.timezone = handles.timezone{1}; % switch cell array to string
@@ -202,12 +196,6 @@ function handles = loaddata(hObject, eventdata, handles)
         set(handles.PercentageCompleteTextBox,'string','Please wait. Loading Waveforms...');
         waitfor(handles.PercentageCompleteTextBox,'string','Please wait. Loading Waveforms...');
         [handles.wdata,handles.wname,handles.wt,~]=gethdf5wave(fullfile(handles.pathname, handles.filename));
-        
-%         % Handle the seconds since event timestamps (that are not in UTC)
-%         handles.isutc = strcmp(h5readatt(fullfile(handles.pathname, handles.filename),'/','Timezone'),'UTC');
-%         if ~handles.isutc
-%             handles.wt = datenum(duration(0,0,0,handles.wt));
-%         end
         
         try
             handles.timezone = h5readatt(fullfile(handles.pathname, handles.filename),'/','Collection Timezone');
