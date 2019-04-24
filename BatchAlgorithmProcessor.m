@@ -99,13 +99,9 @@ for f=1:nfiles
     else
         handles.pathname = handles.allpathnames;
     end
-    set(handles.PercentageCompleteTextBox,'string',['Loading file ' num2str(f) ' of ' num2str(nfiles)])
-    waitfor(handles.PercentageCompleteTextBox,'string',['Loading file ' num2str(f) ' of ' num2str(nfiles)]);
-%     handles = loaddata(hObject, eventdata, handles);
     set(handles.PercentageCompleteTextBox,'string',['Running file ' num2str(f) ' of ' num2str(nfiles)])
     waitfor(handles.PercentageCompleteTextBox,'string',['Running file ' num2str(f) ' of ' num2str(nfiles)]);
-%     run_all_tagging_algs(fullfile(handles.pathname, handles.filename),handles.vdata,handles.vname,handles.vt,handles.wdata,handles.wname,handles.wt,handles.algorithmsselected);
-    run_all_tagging_algs(fullfile(handles.pathname, handles.filename),[],[],[],[],[],[],handles.algorithmsselected);
+    run_all_tagging_algs(fullfile(handles.pathname, handles.filename),[],handles.algorithmsselected);
 end
 set(handles.PercentageCompleteTextBox,'string',['Algorithms completed for ' num2str(nfiles) ' of ' num2str(nfiles) ' files.']);
 handles.filename = handles.allfilenames;
@@ -171,59 +167,6 @@ end
 % Update handles structure
 guidata(hObject, handles);
 
-% This is where the data is actually loaded in - the money code!!
-function handles = loaddata(hObject, eventdata, handles)
-    % Load data from HDF5 File
-    corrupt = 0;
-    try
-        set(handles.PercentageCompleteTextBox,'string','Please wait. Loading Vital Signs...');
-        waitfor(handles.PercentageCompleteTextBox,'string','Please wait. Loading Vital Signs...');
-        [handles.vdata,handles.vname,handles.vt,~]=gethdf5vital(fullfile(handles.pathname, handles.filename));
-        
-        try
-            handles.timezone = h5readatt(fullfile(handles.pathname, handles.filename),'/','Collection Timezone');
-            handles.timezone = handles.timezone{1}; % switch cell array to string
-        catch
-            handles.timezone = '';
-            set(handles.PercentageCompleteTextBox,'string','Time zone not specified. Using ET.');
-        end
-        handles.vdata = scaledata(hObject, eventdata, handles, handles.vname, handles.vdata);
-    catch
-        set(handles.PercentageCompleteTextBox,'string','Vitals could not load.');
-        corrupt = 1;
-    end
-    try
-        set(handles.PercentageCompleteTextBox,'string','Please wait. Loading Waveforms...');
-        waitfor(handles.PercentageCompleteTextBox,'string','Please wait. Loading Waveforms...');
-        [handles.wdata,handles.wname,handles.wt,~]=gethdf5wave(fullfile(handles.pathname, handles.filename));
-        
-        try
-            handles.timezone = h5readatt(fullfile(handles.pathname, handles.filename),'/','Collection Timezone');
-            handles.timezone = handles.timezone{1}; % switch cell array to string
-        catch
-            handles.timezone = '';
-            set(handles.PercentageCompleteTextBox,'string','Time zone not specified. Using ET.');
-        end
-        handles.wdata = scaledata(hObject, eventdata, handles, handles.wname, handles.wdata);
-    catch
-        handles.wdata = [];
-        handles.wname = [];
-        handles.wt = [];
-        set(handles.PercentageCompleteTextBox,'string','Waveforms could not load.');
-        corrupt = 0;
-    end
-
-
-    if corrupt == 1
-        set(handles.PercentageCompleteTextBox,'string','WARNING: File may be corrupt!!!');
-    elseif corrupt == 2
-        set(handles.PercentageCompleteTextBox,'string','URGENT: Delete old result file before continuing');
-    else
-        set(handles.PercentageCompleteTextBox,'string',[fullfile(handles.filename) ' Loaded. Processing Data.']);
-    end
-    % Update handles structure
-    guidata(hObject, handles);
-
 
 % --- Executes on selection change in SelectAlgorithmsListbox.
 function SelectAlgorithmsListbox_Callback(hObject, eventdata, handles)
@@ -234,7 +177,7 @@ function SelectAlgorithmsListbox_Callback(hObject, eventdata, handles)
 % Hints: contents = cellstr(get(hObject,'String')) returns SelectAlgorithmsListbox contents as cell array
 %        contents{get(hObject,'Value')} returns selected item from SelectAlgorithmsListbox
 indicesselected = hObject.Value;
-binaryselected = zeros(1,10);
+binaryselected = zeros(1,28);
 binaryselected(indicesselected) = 1;
 handles.algorithmsselected = binaryselected;
 % Update handles structure
@@ -253,57 +196,35 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
     set(hObject,'BackgroundColor','white');
 end
 handles.algnames = {...
-        'QRS Detection: ECG I';...
-        'QRS Detection: ECG II';...
-        'QRS Detection: ECG III';...
-        'CU Artifact';...
-        'WUSTL Artifact';...
-        'Brady Detection';...
-        'Desat Detection';...
-        'Apnea Detection with ECG Lead I';...
-        'Apnea Detection with ECG Lead II';...
-        'Apnea Detection with ECG Lead III';...
-        'Apnea Detection with No ECG Lead';...
-        'Periodic Breathing';...
-        'Brady Detection Pete';...
-        'Desat Detection Pete';...
-        'Data Available: Pulse';...
-        'Data Available: HR';...
-        'Data Available: SPO2_pct';...
-        'Data Available: Resp';...
-        'Data Available: ECG I';...
-        'Data Available: ECG II';...
-        'Data Available: ECG III'};
-set(hObject,'string',handles.algnames);
+        'QRS Detection: ECG I',1;...
+        'QRS Detection: ECG II',1;...
+        'QRS Detection: ECG III',1;...
+        'CU Artifact',1;...
+        'WUSTL Artifact',1;...
+        'Brady Detection',1;...
+        'Desat Detection',1;...
+        'Apnea Detection with ECG Lead I',1;...
+        'Apnea Detection with ECG Lead II',1;...
+        'Apnea Detection with ECG Lead III',1;...
+        'Apnea Detection with No ECG Lead',1;...
+        'Periodic Breathing with ECG Lead I',1;...
+        'Periodic Breathing with ECG Lead II',1;...
+        'Periodic Breathing with ECG Lead III',1;...
+        'Periodic Breathing with No ECG Lead',1;...
+        'Brady Detection Pete',1;...
+        'Desat Detection Pete',1;...
+        'Brady Desat',1;...
+        'Brady Desat Pete',1;...
+        'ABD Pete No ECG',1;...
+        'Save HR in Results',1;...
+        'Data Available: Pulse',1;...
+        'Data Available: HR',1;...
+        'Data Available: SPO2_pct',1;...
+        'Data Available: Resp',1;...
+        'Data Available: ECG I',1;...
+        'Data Available: ECG II',1;...
+        'Data Available: ECG III',1};
+    
+set(hObject,'string',handles.algnames(:,1));
 % Update handles structure
 guidata(hObject, handles);
-
-function data = scaledata(hObject, eventdata, handles, namesofinterest, data)
-% hObject    handle to RemoveTag (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-scalematrix = zeros(length(namesofinterest),1);
-for n=1:length(namesofinterest)
-    try
-        scalematrix(n) = double(h5readatt(fullfile(handles.pathname, handles.filename),[namesofinterest{n} '/data'],'Scale'));
-    catch
-        scalematrix(n) = 0;
-    end
-    % For layout version 3, scale is simply a multiplicative factor for the original value. To get the real value, you divide by scale. For layout version 4.0, a real value of 1.2 is stored as 12 with a scale of 1, where scale is stored as the power of 10, so to convert from 12 back to 1.2, you need to divide by 10^scale. Later in this code, when we are actually plotting the data, we divide by scale
-    try
-        handles.layoutversion = h5readatt(fullfile(handles.pathname, handles.filename),'/','Layout Version');
-    catch
-        handles.layoutversion = "Doug's Layout";
-    end
-    if ischar(handles.layoutversion)
-        majorversion = str2num(handles.layoutversion(1));
-        if majorversion~=3
-            scalematrix(n) = 10^scalematrix(n);
-        end
-    else
-        if str2double(handles.layoutversion{1}(1)) ~= 3 
-            scalematrix(n) = 10^scalematrix(n);
-        end
-    end
-    data(:,n) = data(:,n)/scalematrix(n);
-end
