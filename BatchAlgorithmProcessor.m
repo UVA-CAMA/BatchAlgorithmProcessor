@@ -137,7 +137,9 @@ function ChooseDirectoryButton_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 dirname = uigetdir();
-files = dir([dirname '\**\*.hdf5']);
+hdf5files = dir([dirname '\**\*.hdf5']);
+datfiles = dir([dirname '\**\*.dat']);
+files = vertcat(hdf5files,datfiles);
 handles.filename = cell(length(files),1);
 handles.pathname = cell(length(files),1);
 for f=1:length(files)
