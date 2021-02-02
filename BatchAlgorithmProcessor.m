@@ -197,7 +197,7 @@ end
 if ~isdeployed
     addpath('..\NICUHDF5Viewer')
 end
-[masteralgmask,algmask_newqrs] = algmask;
+[masteralgmask,algmask_newqrs,~] = algmask;
 algnames = masteralgmask(algmask_newqrs,:);
 displayarray = [algnames(:,1) repmat({' v'},size(algnames,1),1) algnames(:,2)];
 c=cellfun(@string,displayarray);
