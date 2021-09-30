@@ -176,7 +176,9 @@ function SelectAlgorithmsListbox_Callback(hObject, eventdata, handles)
 % Hints: contents = cellstr(get(hObject,'String')) returns SelectAlgorithmsListbox contents as cell array
 %        contents{get(hObject,'Value')} returns selected item from SelectAlgorithmsListbox
 indicesselected = hObject.Value;
-binaryselected = zeros(1,28);
+nalgs=length(handles.algnames)-1;
+%binaryselected = zeros(1,28);
+binaryselected = zeros(1,nalgs);
 binaryselected(indicesselected) = 1;
 handles.algorithmsselected = binaryselected;
 % Update handles structure
